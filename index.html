@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>罗田佩硕网络科技有限公司 | 赋能未来 AI 解决方案</title>
+    <meta name="description" content="专注于人工智能与机器学习研发，位于贵州毕节大数据走廊的核心技术企业。">
+    
+    <!-- Tailwind CSS (通过 CDN 加载) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            primary: '#2563EB',
+                            accent: '#06B6D4',
+                            purple: '#7C3AED',
+                            surface: '#111827'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                        tech: ['"Orbitron"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 1)), url('https://picsum.photos/id/2/1920/1080')",
+                        'tech-grid': "radial-gradient(circle, #1e293b 1px, transparent 1px)"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+
+        /* 动画类 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-card {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 font-sans antialiased overflow-x-hidden">
+
+    <!-- 模块 1: 顶部通知栏 (Top Bar) -->
+    <div class="bg-gradient-to-r from-brand-purple to-brand-primary text-white text-xs py-2 px-4 text-center tracking-wider">
+        <span class="font-bold">NEWS:</span> 佩硕科技全新一代 NLP 语义分析引擎 "DeepMind-V2" 正式发布，算力提升 40%。
+    </div>
+
+    <!-- 模块 2: 导航栏 (Navbar) -->
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-gray-800 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-brand-primary rounded-lg flex items-center justify-center text-white font-tech font-bold text-xl">P</div>
+                <div class="leading-tight">
+                    <h1 class="text-white font-bold text-lg tracking-wide">罗田佩硕</h1>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest">Peishuo Network Tech</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="text-white hover:text-brand-accent transition">首页</a>
+                <a href="#solutions" class="hover:text-brand-accent transition">核心技术</a>
+                <a href="#products" class="hover:text-brand-accent transition">产品生态</a>
+                <a href="#about" class="hover:text-brand-accent transition">关于我们</a>
+                <a href="#contact" class="px-5 py-2 bg-brand-primary hover:bg-blue-600 text-white rounded-full transition shadow-lg shadow-blue-900/50">联系我们</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-surface border-t border-gray-800 absolute w-full left-0">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#home" class="block text-white">首页</a>
+                <a href="#solutions" class="block text-gray-300">核心技术</a>
+                <a href="#products" class="block text-gray-300">产品生态</a>
+                <a href="#contact" class="block text-brand-accent">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 模块 3: 英雄区域 (Hero Section) -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden bg-hero-pattern bg-cover bg-center bg-fixed bg-no-repeat">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/20 text-xs font-semibold mb-6 animate-pulse">
+                赋能 · 觉醒 · 进化
+            </span>
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-tech">
+                重新定义 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-purple">机器智能</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                立足贵州，辐射全球。我们专注于深度学习算法与数据挖掘，将复杂的AI技术转化为可落地的行业解决方案。
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="px-8 py-4 bg-white text-brand-dark font-bold rounded hover:bg-gray-200 transition flex items-center justify-center gap-2">
+                    启动合作 <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#solutions" class="px-8 py-4 border border-gray-600 text-white rounded hover:bg-gray-800/50 transition">
+                    探索技术架构
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 4: 合作伙伴/技术栈跑马灯 (Marquee) -->
+    <div class="border-y border-gray-800 bg-black/50 py-6 overflow-hidden relative">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-xs text-gray-500 mb-4 tracking-widest uppercase">Technology Stack & Partners</p>
+            <div class="flex justify-between items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500 px-10 gap-8 flex-wrap md:flex-nowrap justify-center">
+                <i class="fab fa-python text-4xl"></i>
+                <i class="fab fa-aws text-4xl"></i>
+                <i class="fab fa-google text-4xl"></i>
+                <i class="fab fa-docker text-4xl"></i>
+                <i class="fas fa-brain text-4xl"></i> <!-- TensorFlow placeholder -->
+                <i class="fas fa-microchip text-4xl"></i> <!-- Nvidia placeholder -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 模块 5: 公司简介 (About Intro) -->
+    <section id="about" class="py-20 bg-brand-dark relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-primary/5 blur-[120px] rounded-full"></div>
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="fade-in-up">
+                <h3 class="text-brand-accent font-bold tracking-wider mb-2">WHO WE ARE</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">海边街道上的<br>数字造梦者</h2>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    罗田佩硕网络科技有限公司坐落于贵州省毕节市威宁县，这里是国家大数据综合试验区的核心腹地。依托西部丰富的算力资源，我们致力于打破传统算法的边界。
+                </p>
+                <p class="text-gray-400 mb-8 leading-relaxed">
+                    不仅是一家软件研发公司，我们更是企业的“AI外脑”。从自然语言处理到计算机视觉，我们的代码正在为金融、农业及公共安全领域提供决策支持。
+                </p>
+                <div class="flex gap-4">
+                    <div class="border-l-4 border-brand-purple pl-4">
+                        <h4 class="text-white font-bold text-xl">100+</h4>
+                        <p class="text-sm text-gray-500">算法模型库</p>
+                    </div>
+                    <div class="border-l-4 border-brand-accent pl-4">
+                        <h4 class="text-white font-bold text-xl">99.9%</h4>
+                        <p class="text-sm text-gray-500">系统稳定性</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative fade-in-up delay-200">
+                <img src="https://picsum.photos/id/4/800/600" alt="Team Working" class="rounded-xl shadow-2xl shadow-brand-primary/20 z-10 relative border border-gray-700">
+                <!-- 装饰元素 -->
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-surface border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center z-20 shadow-xl hidden md:flex">
+                    <i class="fas fa-rocket text-3xl text-brand-accent mb-2"></i>
+                    <span class="text-white font-bold">快速交付</span>
+                    <span class="text-xs text-gray-500">敏捷开发流程</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 6: 核心服务 (Core Services Grid) -->
+    <section id="solutions" class="py-20 bg-brand-surface bg-grid-pattern">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-4">核心技术领域</h2>
+                <p class="text-gray-400">我们不制造概念，只提供解决复杂问题的算法引擎。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl hover:bg-gray-800 transition duration-300 group fade-in-up">
+                    <div class="w-14 h-14 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-eye text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">计算机视觉 (CV)</h3>
+                    <p class="text-gray-400 text-sm mb-4">高精度的图像识别与视频分析系统。应用于安防监控、工业质检及无人驾驶辅助场景。</p>
+                    <ul class="text-xs text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-brand-accent mr-2"></i>面部与情绪识别</li>
+                        <li><i class="fas fa-check text-brand-accent mr-2"></i>物体检测与追踪</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl hover:bg-gray-800 transition duration-300 group fade-in-up delay-100 border-brand-purple/30 border">
+                    <div class="w-14 h-14 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-language text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">自然语言处理 (NLP)</h3>
+                    <p class="text-gray-400 text-sm mb-4">基于 Transformer 架构的大语言模型微调。让机器理解人类语言的细微差别。</p>
+                    <ul class="text-xs text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-brand-purple mr-2"></i>智能客服机器人</li>
+                        <li><i class="fas fa-check text-brand-purple mr-2"></i>舆情分析与挖掘</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl hover:bg-gray-800 transition duration-300 group fade-in-up delay-200">
+                    <div class="w-14 h-14 bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-chart-line text-2xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">预测性分析</h3>
+                    <p class="text-gray-400 text-sm mb-4">挖掘历史数据价值，预测未来趋势。为商业决策提供量化依据。</p>
+                    <ul class="text-xs text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-brand-accent mr-2"></i>销量与库存预测</li>
+                        <li><i class="fas fa-check text-brand-accent mr-2"></i>风险评估模型</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 7: 数据统计条 (Stats Bar) -->
+    <section class="py-12 bg-gradient-to-r from-brand-primary to-brand-purple relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
+                <div>
+                    <div class="text-4xl font-bold text-white mb-1 counter" data-target="5">0</div>
+                    <div class="text-xs text-blue-100 uppercase">年行业沉淀</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-1 counter" data-target="42">0</div>
+                    <div class="text-xs text-blue-100 uppercase">合作伙伴</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-1 counter" data-target="150">0</div>
+                    <div class="text-xs text-blue-100 uppercase">交付项目</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-1 counter" data-target="24">0</div>
+                    <div class="text-xs text-blue-100 uppercase">小时响应支持</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 8: 产品展示 - 左图右文 (Product 1) -->
+    <section id="products" class="py-20 bg-brand-dark overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12 mb-24">
+                <div class="md:w-1/2 relative fade-in-up">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-brand-accent to-blue-600 rounded-2xl blur-lg opacity-30"></div>
+                    <img src="https://picsum.photos/id/60/800/600" alt="AI Dashboard" class="relative rounded-xl border border-gray-700 shadow-2xl w-full">
+                </div>
+                <div class="md:w-1/2 fade-in-up delay-100">
+                    <span class="text-brand-accent font-bold text-sm tracking-wider">FLAGSHIP PRODUCT</span>
+                    <h3 class="text-3xl font-bold text-white mt-2 mb-6">Peishuo Brain 城市大脑</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        基于毕节地区地形与人口分布特点定制的智慧管理平台。集成了 GIS 地理信息系统与实时视频流分析，能够对交通拥堵、火灾隐患及公共设施状态进行毫秒级预警。
+                    </p>
+                    <a href="#contact" class="text-white border-b border-brand-accent pb-1 hover:text-brand-accent transition">请求演示 Demo <i class="fas fa-chevron-right text-xs ml-1"></i></a>
+                </div>
+            </div>
+
+            <!-- 模块 9: 产品展示 - 右图左文 (Product 2) -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2 relative fade-in-up">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-lg opacity-30"></div>
+                    <img src="https://picsum.photos/id/180/800/600" alt="IoT Device" class="relative rounded-xl border border-gray-700 shadow-2xl w-full">
+                </div>
+                <div class="md:w-1/2 fade-in-up delay-100">
+                    <span class="text-brand-purple font-bold text-sm tracking-wider">HARDWARE INTEGRATION</span>
+                    <h3 class="text-3xl font-bold text-white mt-2 mb-6">边缘计算盒子 EdgeBox X1</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        无需将所有数据上传云端。我们的边缘计算终端可在本地完成 80% 的推理任务，大幅降低带宽成本与延迟。专为山区、隧道等弱网环境设计。
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="bg-gray-800 text-gray-300 px-3 py-1 text-xs rounded">低功耗</span>
+                        <span class="bg-gray-800 text-gray-300 px-3 py-1 text-xs rounded">IP67防护</span>
+                        <span class="bg-gray-800 text-gray-300 px-3 py-1 text-xs rounded">5G模组</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 10: 行业解决方案 (Industries) -->
+    <section class="py-20 bg-brand-surface">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">行业赋能方案</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Industry 1 -->
+                <div class="group relative overflow-hidden rounded-xl h-64">
+                    <img src="https://picsum.photos/id/201/400/600" alt="Tech" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
+                        <i class="fas fa-microchip text-brand-accent text-2xl mb-2"></i>
+                        <h4 class="text-white font-bold">智能制造</h4>
+                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition translate-y-4 group-hover:translate-y-0">缺陷检测与产线优化</p>
+                    </div>
+                </div>
+                <!-- Industry 2 -->
+                <div class="group relative overflow-hidden rounded-xl h-64">
+                    <img src="https://picsum.photos/id/431/400/600" alt="Agriculture" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
+                        <i class="fas fa-leaf text-green-400 text-2xl mb-2"></i>
+                        <h4 class="text-white font-bold">智慧农业</h4>
+                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition translate-y-4 group-hover:translate-y-0">作物病虫害监测</p>
+                    </div>
+                </div>
+                <!-- Industry 3 -->
+                <div class="group relative overflow-hidden rounded-xl h-64">
+                    <img src="https://picsum.photos/id/442/400/600" alt="Finance" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
+                        <i class="fas fa-coins text-yellow-400 text-2xl mb-2"></i>
+                        <h4 class="text-white font-bold">金融科技</h4>
+                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition translate-y-4 group-hover:translate-y-0">风控与反欺诈</p>
+                    </div>
+                </div>
+                <!-- Industry 4 -->
+                <div class="group relative overflow-hidden rounded-xl h-64">
+                    <img src="https://picsum.photos/id/48/400/600" alt="Edu" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col justify-end p-6">
+                        <i class="fas fa-graduation-cap text-pink-400 text-2xl mb-2"></i>
+                        <h4 class="text-white font-bold">智慧教育</h4>
+                        <p class="text-gray-300 text-xs mt-2 opacity-0 group-hover:opacity-100 transition translate-y-4 group-hover:translate-y-0">个性化学习路径规划</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 11: 研发流程 (Process Steps) -->
+    <section class="py-20 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-3xl font-bold text-white mb-16">我们的研发流程</h2>
+            <div class="flex flex-col md:flex-row justify-between items-start relative">
+                <!-- Connecting Line -->
+                <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-800 -translate-y-1/2 hidden md:block z-0"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative z-10 bg-brand-dark p-4 text-center md:w-1/5 mb-8 md:mb-0">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full border-2 border-brand-primary flex items-center justify-center text-white font-bold mx-auto mb-4">01</div>
+                    <h4 class="text-white font-bold">需求拆解</h4>
+                    <p class="text-gray-500 text-xs mt-2">深入业务场景</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative z-10 bg-brand-dark p-4 text-center md:w-1/5 mb-8 md:mb-0">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full border-2 border-brand-accent flex items-center justify-center text-white font-bold mx-auto mb-4">02</div>
+                    <h4 class="text-white font-bold">数据清洗</h4>
+                    <p class="text-gray-500 text-xs mt-2">ETL与特征工程</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative z-10 bg-brand-dark p-4 text-center md:w-1/5 mb-8 md:mb-0">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full border-2 border-brand-purple flex items-center justify-center text-white font-bold mx-auto mb-4">03</div>
+                    <h4 class="text-white font-bold">模型训练</h4>
+                    <p class="text-gray-500 text-xs mt-2">算法选型与调优</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative z-10 bg-brand-dark p-4 text-center md:w-1/5 mb-8 md:mb-0">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full border-2 border-green-500 flex items-center justify-center text-white font-bold mx-auto mb-4">04</div>
+                    <h4 class="text-white font-bold">部署测试</h4>
+                    <p class="text-gray-500 text-xs mt-2">Docker容器化</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="relative z-10 bg-brand-dark p-4 text-center md:w-1/5 mb-8 md:mb-0">
+                    <div class="w-12 h-12 bg-gray-800 rounded-full border-2 border-blue-500 flex items-center justify-center text-white font-bold mx-auto mb-4">05</div>
+                    <h4 class="text-white font-bold">持续迭代</h4>
+                    <p class="text-gray-500 text-xs mt-2">MLOps监控</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 12: 团队介绍 (Team) -->
+    <section class="py-20 bg-brand-surface border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12">核心研发团队</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="bg-brand-dark p-6 rounded-xl border border-gray-800 hover:border-brand-accent transition text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-gray-700 group-hover:border-brand-accent transition">
+                        <img src="https://picsum.photos/id/1005/200/200" alt="Person" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-bold text-lg">陈工 (CTO)</h4>
+                    <p class="text-brand-primary text-sm mb-4">首席算法科学家</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">前互联网大厂AI实验室核心成员，擅长大规模分布式训练及强化学习领域。</p>
+                </div>
+                <!-- Member 2 -->
+                <div class="bg-brand-dark p-6 rounded-xl border border-gray-800 hover:border-brand-accent transition text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-gray-700 group-hover:border-brand-accent transition">
+                        <img src="https://picsum.photos/id/1011/200/200" alt="Person" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-bold text-lg">李经理</h4>
+                    <p class="text-brand-primary text-sm mb-4">产品架构总监</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">拥有10年+政府及企业级数字化转型经验，深刻理解贵州本地大数据生态。</p>
+                </div>
+                <!-- Member 3 -->
+                <div class="bg-brand-dark p-6 rounded-xl border border-gray-800 hover:border-brand-accent transition text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-gray-700 group-hover:border-brand-accent transition">
+                        <img src="https://picsum.photos/id/338/200/200" alt="Person" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-white font-bold text-lg">王工程师</h4>
+                    <p class="text-brand-primary text-sm mb-4">后端研发主管</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">精通高并发系统架构，负责公司核心数据中台的稳定性保障。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 13: 新闻/动态 (News) -->
+    <section class="py-20 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-10">
+                <h2 class="text-3xl font-bold text-white">公司动态</h2>
+                <a href="#" class="text-sm text-brand-accent hover:underline">查看更多</a>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex gap-4 items-start hover:bg-gray-900 p-4 rounded-lg transition cursor-pointer">
+                    <div class="text-center bg-gray-800 p-3 rounded text-gray-300 min-w-[70px]">
+                        <span class="block text-xl font-bold">12</span>
+                        <span class="text-xs">OCT</span>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-2 text-lg">罗田佩硕获评“年度创新技术企业”</h4>
+                        <p class="text-gray-500 text-sm line-clamp-2">在近日举办的贵州大数据产业峰会上，我司凭借自研的边缘计算解决方案荣获创新技术奖...</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 items-start hover:bg-gray-900 p-4 rounded-lg transition cursor-pointer">
+                    <div class="text-center bg-gray-800 p-3 rounded text-gray-300 min-w-[70px]">
+                        <span class="block text-xl font-bold">08</span>
+                        <span class="text-xs">SEP</span>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-2 text-lg">与本地高校达成产学研合作</h4>
+                        <p class="text-gray-500 text-sm line-clamp-2">正式挂牌成立人工智能联合实验室，将为威宁地区培养更多高素质计算机人才...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 14: 招聘/CTA (Join Us) -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 to-brand-dark relative">
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">寻找未来的定义者</h2>
+            <p class="text-blue-200 mb-8 max-w-2xl mx-auto">我们正在寻找充满激情的数据科学家、全栈工程师和产品经理。如果你对AI充满热情，欢迎加入我们。</p>
+            <a href="#contact" class="inline-block px-8 py-3 bg-white text-blue-900 font-bold rounded shadow-lg hover:scale-105 transition">查看开放职位</a>
+        </div>
+    </section>
+
+    <!-- 模块 15: FAQ 常见问题 -->
+    <section class="py-20 bg-brand-surface">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold text-white mb-10 text-center">常见问题</h2>
+            <div class="space-y-4">
+                <details class="bg-brand-dark p-4 rounded-lg cursor-pointer group">
+                    <summary class="text-white font-medium list-none flex justify-between items-center">
+                        你们提供定制化开发服务吗？
+                        <span class="text-brand-accent transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 text-sm">是的，我们专注于为B端客户提供定制化的AI解决方案。我们会根据您的具体业务场景（如特定的质检需求、非标数据处理等）进行模型训练和系统开发。</p>
+                </details>
+                <details class="bg-brand-dark p-4 rounded-lg cursor-pointer group">
+                    <summary class="text-white font-medium list-none flex justify-between items-center">
+                        项目交付周期通常是多久？
+                        <span class="text-brand-accent transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 text-sm">标准SaaS产品可即时开通。定制化项目通常分为需求分析、原型设计、开发与训练、测试部署四个阶段，一般周期在1-3个月不等，视项目复杂度而定。</p>
+                </details>
+                <details class="bg-brand-dark p-4 rounded-lg cursor-pointer group">
+                    <summary class="text-white font-medium list-none flex justify-between items-center">
+                        数据安全性如何保障？
+                        <span class="text-brand-accent transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 text-sm">我们严格遵守国家数据安全法规。支持私有化部署，数据不离本地服务器。传输过程采用AES-256加密，确保您的核心数据资产安全无忧。</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 16: 联系我们 (Contact Form & Info) -->
+    <section id="contact" class="py-20 bg-brand-dark relative overflow-hidden">
+        <!-- 装饰背景 -->
+        <div class="absolute -right-20 top-20 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2">联系我们</h2>
+                    <p class="text-gray-400 mb-10">无论您有技术咨询还是合作意向，我们随时待命。</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded flex items-center justify-center flex-shrink-0 text-brand-accent">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">公司地址</h4>
+                                <p class="text-gray-400">贵州省毕节市威宁县海边街道<br>滨海大道海边安置区</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded flex items-center justify-center flex-shrink-0 text-brand-accent">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">电子邮箱</h4>
+                                <a href="mailto:contact@peishuonet.asia" class="text-gray-400 hover:text-white transition">contact@peishuonet.asia</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded flex items-center justify-center flex-shrink-0 text-brand-accent">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">联系电话</h4>
+                                <a href="tel:+8613174074121" class="text-gray-400 hover:text-white transition">+86 131 7407 4121</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-brand-surface p-8 rounded-2xl border border-gray-800 shadow-xl">
+                    <form onsubmit="event.preventDefault(); alert('感谢您的留言，我们会尽快联系您！');" class="space-y-6">
+                        <div>
+                            <label class="block text-sm text-gray-500 mb-2">您的姓名</label>
+                            <input type="text" class="w-full bg-brand-dark border border-gray-700 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-primary transition" placeholder="怎么称呼您？" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-500 mb-2">联系方式</label>
+                            <input type="text" class="w-full bg-brand-dark border border-gray-700 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-primary transition" placeholder="电话或邮箱" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-500 mb-2">需求描述</label>
+                            <textarea rows="4" class="w-full bg-brand-dark border border-gray-700 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-primary transition" placeholder="请简述您的项目需求或咨询内容..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-blue-600 text-white font-bold py-4 rounded hover:shadow-lg hover:from-blue-600 hover:to-brand-primary transition transform active:scale-95">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模块 17: 地图占位 (Map Visual) -->
+    <div class="h-64 w-full bg-gray-800 relative overflow-hidden group">
+        <!-- 使用图片模拟地图，实际生产中可替换为百度/高德地图API -->
+        <img src="https://picsum.photos/id/102/1920/400" alt="Location Map" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition duration-700">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="bg-brand-dark/80 backdrop-blur px-6 py-3 rounded border border-gray-600 text-white text-center">
+                <i class="fas fa-map-pin text-red-500 mb-1"></i>
+                <p class="text-xs">贵州省毕节市威宁县核心办公区</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模块 18: 页脚 (Footer) -->
+    <footer class="bg-black border-t border-gray-800 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-primary rounded flex items-center justify-center text-white font-tech font-bold">P</div>
+                        <h2 class="text-2xl font-bold text-white tracking-wide">罗田佩硕</h2>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">
+                        致力于将最前沿的人工智能技术应用于实体经济。我们相信代码可以改变世界，算法可以温暖生活。
+                    </p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="w-10 h-10 rounded bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-brand-primary hover:text-white transition"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-brand-primary hover:text-white transition"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-brand-primary hover:text-white transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">快速链接</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#about" class="hover:text-brand-accent transition">关于我们</a></li>
+                        <li><a href="#solutions" class="hover:text-brand-accent transition">核心技术</a></li>
+                        <li><a href="#products" class="hover:text-brand-accent transition">产品中心</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition">加入我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">服务支持</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-accent transition">隐私政策</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition">服务条款</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition">技术文档</a></li>
+                        <li><a href="#contact" class="hover:text-brand-accent transition">售后咨询</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2024 罗田佩硕网络科技有限公司 (Luotian Peishuo Network Technology Co., Ltd.) All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0">Design with <i class="fas fa-heart text-red-900"></i> by Peishuo Team.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 交互脚本 -->
+    <script>
+        // 1. 移动端菜单切换
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 2. 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-brand-dark/95');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-brand-dark/90');
+            }
+        });
+
+        // 3. 滚动显现动画 (Scroll Reveal)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // 只触发一次
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 4. 数字增长动画
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const speed = 200; // 越小越快
+                        
+                        const updateCount = () => {
+                            const count = +counter.innerText;
+                            const inc = target / speed;
+                            
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + inc);
+                                setTimeout(updateCount, 30);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.bg-gradient-to-r');
+        if(statsSection) {
+            counterObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
